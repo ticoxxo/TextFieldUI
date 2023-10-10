@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var numberOfPeople: Int = 0
     @StateObject var percentVar = PercentTip()
     let tipPercentages = [10, 15, 20, 25, 0]
+    @State private var useRedText = false
     
     var totalCheck : Double {
         let tipSelection = Double(percentVar.tipPercentage)
@@ -65,6 +66,7 @@ struct ContentView: View {
                 Section {
                     NavigationLink(destination: PickerView()) {
                         Text(Int(percentVar.tipPercentage) , format: .percent)
+                            .foregroundStyle(percentVar.tipPercentage == 0 ? .red : .green)
                     }
                 } header: {
                     Text("How much tip will you leave?")
